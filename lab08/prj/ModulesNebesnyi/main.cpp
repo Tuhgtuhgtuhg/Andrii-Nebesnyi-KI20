@@ -1,8 +1,12 @@
 #include <cmath>
+#include <iostream>
 
-int s_calculation(float x, float y, float z, double S){
+#include "ModulesNebesnyi.h"
 
-    S = pow((2*z + 1), x) - sqrt(abs(y - 0.5 * z)) + 3.14 + z;
+using namespace std;
 
+float s_calculation(float x, float y, float z){
+    float S = pow((2*z + 1), x) - sqrt(abs(y - 1/2 * z)) + 3.14 + z;
+    S = int(S*100 + 0.5)/100.0; // two symbols after the coma
     return S;
 }

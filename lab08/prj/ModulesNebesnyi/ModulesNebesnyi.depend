@@ -1,4 +1,10 @@
 # depslib dependency file v1.0
-1616341943 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi\main.cpp
+1616350810 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi\main.cpp
 	<cmath>
+	<iostream>
+	"ModulesNebesnyi.h"
+
+1616342612 d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi\modulesnebesnyi.h
+
+1616349208 d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi.h
 

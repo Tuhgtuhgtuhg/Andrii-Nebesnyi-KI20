@@ -2,31 +2,25 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="ModulesNebesnyi" />
+		<Option title="TestDriver" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/ModulesNebesnyi" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option output="bin/Debug/TestDriver" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="2" />
+				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/ModulesNebesnyi" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="" />
+				<Option output="bin/Release/TestDriver" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option type="2" />
+				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option createDefFile="1" />
 				<Compiler>
-					<Add option="-Wall" />
 					<Add option="-O2" />
 				</Compiler>
 				<Linker>
@@ -35,16 +29,18 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
 			<Add directory="../../prj" />
-			<Add directory="bin/Debug" />
+			<Add directory="../ModulesNebesnyi/bin/Debug" />
 		</Compiler>
 		<Linker>
-			<Add directory="bin/Debug" />
+			<Add library="../ModulesNebesnyi/bin/Debug/libModulesNebesnyi.a" />
+			<Add library="../ModulesNebesnyi.h" />
+			<Add directory="../ModulesNebesnyi/bin/Debug" />
 			<Add directory="../../prj" />
 		</Linker>
-		<Unit filename="main.cpp">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

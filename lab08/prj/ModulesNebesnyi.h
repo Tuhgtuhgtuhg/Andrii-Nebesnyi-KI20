@@ -1,6 +1,6 @@
 #ifndef MODULESNEBESNYI_H_INCLUDED
 #define MODULESNEBESNYI_H_INCLUDED
 
-int s_calculator(float x, float y, float z, double S);
+float s_calculation(float x, float y, float z);
 
 #endif // MODULESNEBESNYI_H_INCLUDED
