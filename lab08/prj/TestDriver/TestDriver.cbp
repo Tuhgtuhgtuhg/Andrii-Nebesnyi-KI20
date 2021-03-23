@@ -32,17 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 			<Add directory="../../prj" />
-			<Add directory="../ModulesNebesnyi/bin/Debug" />
 		</Compiler>
 		<Linker>
-			<Add library="../ModulesNebesnyi/bin/Debug/libModulesNebesnyi.a" />
-			<Add library="../ModulesNebesnyi.h" />
 			<Add directory="../ModulesNebesnyi/bin/Debug" />
-			<Add directory="../../prj" />
 		</Linker>
 		<Unit filename="main.cpp" />
-		<Extensions>
-			<lib_finder disable_auto="1" />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
