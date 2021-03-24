@@ -27,6 +27,8 @@ float num_operations(float x, float y, float z, float S)
 
 	S = s_calculation(x, y, z);
 	cout << fixed << setprecision(2) << "S = " << S << endl;
+
+	getchar();
 }
 
 int main()
@@ -64,6 +66,8 @@ int main()
     cout << "Введіть z: ";
     cin >> z;
     num_operations(x, y, z, S);
+
+    getchar();
 
     return 0;
 }
