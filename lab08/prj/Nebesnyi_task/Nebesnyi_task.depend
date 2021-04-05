@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1617001344 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\nebesnyi_task\main.cpp
-	<iostream>
+1617621740 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\nebesnyi_task\main.cpp
+	<windows.h>
 	<iomanip>
+	<clocale>
+	<wchar.h>
+	<io.h>
+	<fcntl.h>
 	"ModulesNebesnyi.h"
-
-1617000660 d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi.h
 

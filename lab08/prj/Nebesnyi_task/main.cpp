@@ -23,14 +23,14 @@ int bool_operation(char a, char b)
     wcout << L"Результат виконання логiчної операцiї a+1>b  ---> " << boolalpha << bool(a + 1 > b) << endl;
 }
 
-float num_operations(float x, float y, float z, float S)
+float num_operations(int x, int y, int z, float S)
 {
-    wcout << fixed << setprecision(2) << L"x = " << x << L"->" << hexfloat << x << endl;
-	wcout << fixed << setprecision(2) << L"y = " << y << L"->" << hexfloat << y << endl;
-	wcout << fixed << setprecision(2) << L"z = " << z << L"->" << hexfloat << z << endl;
+    wcout << dec << L"x = " << x << L" -> " << L"0x" << hex << uppercase << x << endl;
+	wcout << dec << L"y = " << y << L" -> " << L"0x" << hex << uppercase << y << endl;
+	wcout << dec << L"z = " << z << L" -> " << L"0x" << hex << uppercase << z << endl;
 
 	S = s_calculation(x, y, z);
-	wcout << fixed << setprecision(2) << "S = " << S << endl;
+	wcout << dec << "S = " << S << endl;
 
 	getchar();
 }
@@ -41,9 +41,9 @@ int main()
     _setmode(_fileno(stdout), _O_U8TEXT);
 
     char a, b;
-    float x = 0;
-    float y = 0;
-    float z = 0;
+    int x = 0;
+    int y = 0;
+    int z = 0;
     float S = 0;
 
     dev_information();
@@ -63,15 +63,41 @@ int main()
     bool_operation(a, b);
 
     wcout << L" ---------------------------------------------------------------------------- " << endl;
-    wcout << L"Введiть х: ";
-    cin >> x;
-    wcout << L"Введiть y: ";
-    cin >> y;
-    wcout << L"Введiть z: ";
-    cin >> z;
+
+    while(true)
+    {
+        wcout << L"Введiть х: ";
+        if(!scanf("%d", &x)){
+            scanf("%*[^\n]");
+            wcout << L"Ви ввели символ, введіть число." << endl;
+        }
+        else
+            break;
+    }
+    while(true)
+    {
+        wcout << L"Введiть y: ";
+        if(!scanf("%d", &y)){
+            scanf("%*[^\n]");
+            wcout << L"Ви ввели символ, введіть число." << endl;
+        }
+        else
+            break;
+    }
+        while(true)
+    {
+        wcout << L"Введiть z: ";
+        if(!scanf("%d", &z)){
+            scanf("%*[^\n]");
+            wcout << L"Ви ввели символ, введіть число." << endl;
+        }
+        else
+            break;
+    }
     num_operations(x, y, z, S);
 
     getchar();
 
     return 0;
 }
+
