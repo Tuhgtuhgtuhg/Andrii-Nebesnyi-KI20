@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1618058314 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab09\prj\testdriver\main.cpp
+	<iostream>
+	"ModulesNebesnyi.h"
+
