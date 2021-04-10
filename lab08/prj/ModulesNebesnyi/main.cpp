@@ -21,11 +21,11 @@ int bin_zero_counter(int number){
         mask<<=1;
     }
 
-    if(number & (mask << 13)){
-        cout << "Binary One - ";
+    if(number & (mask << 12)){
+        wcout << L"Binary One - ";
         return BinOne;
-    }else if(!(number & (mask << 13))){
-        cout << "Binary Zero - ";
+    }else if(!(number & (mask << 12))){
+        wcout << L"Binary Zero - ";
         return BinZero;
     }
 }
@@ -48,31 +48,31 @@ int rating_actions(int mark){
     if (mark >= 90 && mark <= 100) {
         rating = 'A';
         wcout << L"Excellent performance with small number of errors - ";
-        return rating;
+        return (char)rating;
     } else if (mark >= 82 && mark <= 89) {
         rating = 'B';
         wcout << L"Above average some mistakes - ";
-        return rating;
+        return (char)rating;
     } else if (mark >= 75 && mark <= 81) {
         rating = 'C';
         wcout << L"Overall correct fulfillment of certain significant number of errors - ";
-        return rating;
+        return (char)rating;
     } else if (mark >= 67 && mark <= 74) {
         rating = 'D';
         wcout << L"Not bad, but with significant number of defects - ";
-        return rating;
+        return (char)rating;
     } else if (mark >= 60 && mark <= 66) {
         rating = 'E';
         wcout << L"satisfies minimum criteria - ";
-        return rating;
+        return (char)rating;
     } else if (mark >= 35 && mark <= 59) {
         rating = 'F';
         wcout << L"With a possibility of re-assembly - ";
-        return rating;
+        return (char)rating;
     } else if (mark >= 0 && mark <= 34) {
         rating = 'X';
         wcout << L"With the obligatory repeated course - F";
-        return rating;
+        return (char)rating;
     } else {
         return 0.0;
     }
