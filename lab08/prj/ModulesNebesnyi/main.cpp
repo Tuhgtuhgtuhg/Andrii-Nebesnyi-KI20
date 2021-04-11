@@ -2,9 +2,14 @@
 #include <iostream>
 #include <wchar.h>
 #include <io.h>
+#include <string>
+#include <bitset>
+
+
 #include "ModulesNebesnyi.h"
 
 using namespace std;
+
 
 int bin_zero_counter(int number){
     int mask = 0b00000000000000000000000000000001;
@@ -13,7 +18,7 @@ int bin_zero_counter(int number){
     int BinOne = 0;
     int BinZero = 0;
 
-    for(int i = 0; i <  sizeof(int) * 8; i++){
+    for(int i = 0; i < (log2(number)); i++){
         if(!(number & mask))
             BinZero++;
         else
