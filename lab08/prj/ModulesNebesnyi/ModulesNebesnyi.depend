@@ -1,6 +1,5 @@
 # depslib dependency file v1.0
-1617985562 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi\main.cpp
-	<cmath>
+1618139785 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi\main.cpp
 	<iostream>
 	<wchar.h>
 	<io.h>
@@ -8,5 +7,5 @@
 
 1616342612 d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi\modulesnebesnyi.h
 
-1617979039 d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi.h
+1618064351 d:\bmtp_rep\andrii-nebesnyi-ki20\lab08\prj\modulesnebesnyi.h
 

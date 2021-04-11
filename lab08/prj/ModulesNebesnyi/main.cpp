@@ -21,12 +21,12 @@ int bin_zero_counter(int number){
         mask<<=1;
     }
 
-    if(number & (mask << 12)){
-        wcout << L"Binary One - ";
-        return BinOne;
-    }else if(!(number & (mask << 12))){
+    if(!(number & (mask << 13))){
         wcout << L"Binary Zero - ";
         return BinZero;
+    }else{
+        wcout << L"Binary One - ";
+        return BinOne;
     }
 }
 
