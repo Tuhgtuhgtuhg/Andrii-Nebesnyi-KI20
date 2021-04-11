@@ -45,7 +45,7 @@ int main()
                  wcout << L"Введiть х: ";
                  if(!scanf("%d", &x)){
                      scanf("%*[^\n]");
-                     wcout << L"Ви ввели символ, введіть число." << endl;
+                     wcout << L"Ви ввели символ, введіть число.\a" << endl;
                  }
                  else
                      break;
@@ -54,7 +54,7 @@ int main()
                  wcout << L"Введiть y: ";
                  if(!scanf("%d", &y)){
                      scanf("%*[^\n]");
-                     wcout << L"Ви ввели символ, введіть число." << endl;
+                     wcout << L"Ви ввели символ, введіть число. \a" << endl;
                  }
                  else
                      break;
@@ -63,7 +63,7 @@ int main()
                  wcout << L"Введiть z: ";
                  if(!scanf("%d", &z)){
                      scanf("%*[^\n]");
-                     wcout << L"Ви ввели символ, введіть число." << endl;
+                     wcout << L"Ви ввели символ, введіть число. \a" << endl;
                  }
                  else
                      break;
@@ -80,7 +80,7 @@ int main()
                     break;
                 }
                 else{
-                    wcout << L"Невірно введено дані, спробуйте ще раз." << endl;
+                    wcout << L"Невірно введено дані, спробуйте ще раз. \a" << endl;
                 }
             }
             wcout << L"______________________________________________________________________" << endl;
@@ -90,7 +90,7 @@ int main()
                      wcout << L"Введіть температуру за " << i+1 << L" день: ";
                      if(!scanf("%f", &week_temp[i])){
                          scanf("%*[^\n]");
-                         wcout << L"Ви ввели символ, введіть число." << endl;
+                         wcout << L"Ви ввели символ, введіть число. \a" << endl;
                      }
                      else
                          break;
@@ -105,20 +105,20 @@ int main()
                 wcout << L"Введіть ціле число від 0 до 17948360: ";
                 if(!scanf("%d", &number)){
                     scanf("%*[^\n]");
-                    wcout << L"Ви ввели символ, введіть число." << endl;
+                    wcout << L"Ви ввели символ, введіть число. \a" << endl;
                 }else if(number >= 0 && number <= 17948360)
                 {
                     wcout << bin_zero_counter(number) << L" - результат виконання." << endl;
                     break;
                 }else{
-                    wcout << L"Невірно введені дані." << endl;
+                    wcout << L"Невірно введені дані. \a" << endl;
                 }
             }
             wcout << L"______________________________________________________________________" << endl;
        } else if(input == 'A' || input == 'a' || input == 'p'){
             break;
        } else {
-            wcout << L"Невірно введений ключ." << endl;
+            wcout << L"Невірно введений ключ. \a" << endl;
        }
 
     }
