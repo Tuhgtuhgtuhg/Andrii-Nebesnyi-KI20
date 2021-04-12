@@ -13,6 +13,7 @@ using namespace std;
 
 int bin_zero_counter(int number){
     int mask = 0b00000000000000000000000000000001;
+    int mask_2 = 0b00000000000000000000000000000001;
     int d12 = 0b00000000000000000000100000000000;
 
     int BinOne = 0;
@@ -26,7 +27,7 @@ int bin_zero_counter(int number){
         mask<<=1;
     }
 
-    if(!(number & (mask << 13))){
+    if(!(number & (mask_2 << 12))){
         wcout << L"Binary Zero - ";
         return BinZero;
     }else{
