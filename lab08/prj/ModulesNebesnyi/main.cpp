@@ -12,9 +12,8 @@ using namespace std;
 
 
 int bin_zero_counter(int number){
-    int mask = 0b00000000000000000000000000000001;
-    int mask_2 = 0b00000000000000000000000000000001;
-    int d12 = 0b00000000000000000000100000000000;
+    int mask = 1;
+    int mask_2 = 1;
 
     int BinOne = 0;
     int BinZero = 0;
