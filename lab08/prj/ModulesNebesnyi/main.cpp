@@ -140,7 +140,6 @@ int f_searchword(char *inputName, char *outputName, int *vowelNum){
         for(int j = 0; j < vowelSounds.length(); j++)
             if(inputWord[i] == vowelSounds[j]) vows++;
     }
-    wcout << vows << endl;
     *vowelNum = vows;
 
     if(*vowelNum > 0)

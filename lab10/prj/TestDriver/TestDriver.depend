@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1620752691 source:d:\bmtp_projects\testdriver\main.cpp
+	<iostream>
+	<clocale>
+	<cstdlib>
+	<sstream>
+	<codecvt>
+	<fstream>
+	<wchar.h>
+	<fcntl.h>
+	<string>
+	<tchar.h>
+	<io.h>
+	<locale>
+	<ModulesNebesnyi.h>
+
+1620834159 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab10\prj\testdriver\main.cpp
+	<iostream>
+	<clocale>
+	<cstdlib>
+	<sstream>
+	<codecvt>
+	<fstream>
+	<wchar.h>
+	<fcntl.h>
+	<string>
+	<tchar.h>
+	<io.h>
+	<locale>
+	<ModulesNebesnyi.h>
+
