@@ -1,12 +1,18 @@
-﻿#include <cmath>
-#include <iostream>
+﻿#include <iostream>
+#include <fstream>
 #include <wchar.h>
 #include <io.h>
+#include <fcntl.h>
+#include <clocale>
 #include <string>
+#include <cstdlib>
+#include <sstream>
+#include <codecvt>
+#include <ctime>
 #include <bitset>
+#include <cmath>
 
-
-#include "ModulesNebesnyi.h"
+//#include "ModulesNebesnyi.h"
 
 using namespace std;
 
@@ -87,4 +93,130 @@ float s_calculation(int x, int y, int z){
     float S = pow((2*z + 1), x) - sqrt(abs(y - 1/2 * z)) + 3.14 + z;
     S = int(S*100 + 0.5)/100.0; // two symbols after the coma
     return S;
+}
+
+int f_searchword(char *inputName, char *outputName, int *vowelNum){
+    _wsetlocale(LC_ALL, L"uk_UA.UTF-8");
+    _setmode(_fileno(stdout), _O_U8TEXT);
+    _setmode(_fileno(stdin), _O_U8TEXT);
+
+    wifstream inputFile;
+    wofstream outputFile;
+    *vowelNum = 0;
+    int vows = 0;
+    wstring inputWord;
+    wstring vowelSounds = L"АаЕеЄєиІіЇїУуЮюЯяОо";
+    wchar_t poesy[1000] = {L"До щастя не пускає лінощів орава. У чім воно - ніхто не знає до пуття."
+                     "Навчитись радісно робити кожну справу - Найперше правило щасливого життя."};
+
+    inputFile.open(inputName);
+    inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+    getline(inputFile, inputWord);
+    inputFile.close();
+
+    wchar_t wstr[50] = L"";
+    wcscat(wstr, inputWord.c_str());
+
+    outputFile.open(outputName);
+    outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+    outputFile.clear();
+    outputFile << L" ----------------------------------------------- " << endl
+               << L"| Застосунок розроблено студентом першого курсу |" << endl
+               << L"|                університету ЦНТУ              |" << endl
+               << L"|       Небесним Андрієм Вадимовичем КІ-20      |" << endl
+               << L" --------------©AllRightsAreReserved------------ " << endl;
+    bool Marker = 0;
+    int testRes = 0;
+
+    if(wcsstr(poesy ,wstr)){
+        outputFile << L"Cлово " << inputWord << L" присутнє в краплинці Віталія Іващенка." << endl;
+        testRes = 1;
+    }
+    else{
+        outputFile << L"Cлово " << inputWord << L" відсутнє в краплинці Віталія Іващенка." << endl;
+        testRes = 2;
+    }
+    for(int i = 0; i < inputWord.length(); i++){
+        for(int j = 0; j < vowelSounds.length(); j++)
+            if(inputWord[i] == vowelSounds[j]) vows++;
+    }
+    wcout << vows << endl;
+    *vowelNum = vows;
+
+    if(*vowelNum > 0)
+        outputFile << L"Кількість голосних в слові " << inputWord << L" - " << *vowelNum << endl;
+    else
+        outputFile << L"Голосні в слові " << inputWord << L" відсутні." << endl;
+
+    outputFile.close();
+
+    return testRes;
+}
+
+int f_countcons(char *inputName,char *outputName){
+    _wsetlocale(LC_ALL, L"uk_UA.UTF-8");
+    _setmode(_fileno(stdout), _O_U8TEXT);
+    _setmode(_fileno(stdin), _O_U8TEXT);
+
+    wofstream outputFile;
+    wifstream inputFile;
+    int consNum = 0;
+    wstring consSounds = L"БбВвГгҐґДдЖжЗзКкЛлМмНнПпРрСсТтфФХхЦцЧчШшЩщ";
+    wstring inputWord;
+
+    inputFile.open(inputName);
+    inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+    getline(inputFile, inputWord);
+    inputFile.close();
+
+    outputFile.open(outputName);
+    outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+    for(int i = 0; i < inputWord.length(); i++){
+        for(int j = 0; j < consSounds.length(); j++)
+            if(inputWord[i] == consSounds[j]) consNum++;
+    }
+
+    time_t writingTime;
+
+    outputFile << endl << L"Кількість приголосних в краплинці - " << consNum << endl
+               << L"Час дозапису інформаціх: " << endl << ctime(&writingTime) << endl;
+    outputFile.close();
+
+    return consNum;
+}
+
+int dec2bin(int num)
+{
+    int bin = 0, k = 1;
+
+    while (num)
+    {
+        bin += (num % 2) * k;
+        k *= 10;
+        num /= 2;
+    }
+
+    return bin;
+}
+
+int f_resofscalc(char *outputName, int x, int y, int z, float *S, int *binNum){
+    _wsetlocale(LC_ALL, L"uk_UA.UTF-8");
+    _setmode(_fileno(stdout), _O_U8TEXT);
+    _setmode(_fileno(stdin), _O_U8TEXT);
+
+    wofstream outputFile;
+    int bitSize = 0;
+
+    outputFile.open(outputName);
+    outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+
+    *binNum = dec2bin(*binNum);
+    *S = s_calculation(x, y, z);
+
+    outputFile << L"Результат виконання s_calculation: " << *S << endl
+               << L"Число B у двійковій системі числення: " << *binNum;
+
+    outputFile.close();
+
+    return 0;
 }
