@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1620845084 source:d:\bmtp_rep\andrii-nebesnyi-ki20\lab10\prj\nebesnyitask\main.cpp
+	<cwchar>
+	<io.h>
+	<clocale>
+	<fstream>
+	<string>
+	<cstdlib>
+	<sstream>
+	<codecvt>
+	<fcntl.h>
+	"ModulesNebesnyi.h"
+

@@ -168,7 +168,7 @@ int f_countcons(char *inputName,char *outputName){
     getline(inputFile, inputWord);
     inputFile.close();
 
-    outputFile.open(outputName);
+    outputFile.open(outputName, ios::app);
     outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
     for(int i = 0; i < inputWord.length(); i++){
         for(int j = 0; j < consSounds.length(); j++)
@@ -177,8 +177,8 @@ int f_countcons(char *inputName,char *outputName){
 
     time_t writingTime;
 
-    outputFile << endl << L"Кількість приголосних в краплинці - " << consNum << endl
-               << L"Час дозапису інформаціх: " << endl << ctime(&writingTime) << endl;
+    outputFile << endl << L"Кількість приголосних у слові " << inputWord << " - " << consNum << endl
+               << L"Час дозапису інформації: " << endl << ctime(&writingTime) << endl;
     outputFile.close();
 
     return consNum;
@@ -206,7 +206,7 @@ int f_resofscalc(char *outputName, int x, int y, int z, float *S, int *binNum){
     wofstream outputFile;
     int bitSize = 0;
 
-    outputFile.open(outputName);
+    outputFile.open(outputName, ios::app);
     outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
 
     *binNum = dec2bin(*binNum);

@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <clocale>
 #include <cstdlib>
 #include <sstream>
@@ -33,7 +33,7 @@ int main()
     float S = 0;
     float TrueS[10] = {6.14, 12.14, 8.74, 7.31, 3126.68, 9273.14, 127.73, -0.01, 4.14};
 
-    string input[10] = {"До", "щастя", "орава", "забава", "бабуся", "робити", "страждати", "справу", "життя", "жити"};
+    wstring input[10] = {L"Р”Рѕ", L"С‰Р°СЃС‚СЏ", L"РѕСЂР°РІР°", L"Р·Р°Р±Р°РІР°", L"Р±Р°Р±СѓСЃСЏ", L"СЂРѕР±РёС‚Рё", L"СЃС‚СЂР°Р¶РґР°С‚Рё", L"СЃРїСЂР°РІСѓ", L"Р¶РёС‚С‚СЏ", L"Р¶РёС‚Рё"};
     int resmarker = 0;
     int expMarker[10] = {1, 1, 1, 2, 2, 1, 2, 1, 1, 2};
     int vowelNum = 0;
@@ -60,11 +60,11 @@ int main()
         f_searchword(inputName, outputName, &vowelNum);
 
         if(resmarker == 1 && vowelNum == vowNum[test_iter])
-            testOutput1 << "Passed - слово " << input[test_iter].c_str() << " присутнє в вірші, кількість голосних в слові - " << vowNum[test_iter] << endl;
+            testOutput1 << L"Passed - СЃР»РѕРІРѕ " << input[test_iter].c_str() << L" РїСЂРёСЃСѓС‚РЅС” РІ РІС–СЂС€С–, РєС–Р»СЊРєС–СЃС‚СЊ РіРѕР»РѕСЃРЅРёС… РІ СЃР»РѕРІС– - " << vowNum[test_iter] << endl;
         if(resmarker == 2 && vowelNum == vowNum[test_iter])
-            testOutput1 << "Passed - слово " << input[test_iter].c_str() << " відсутнє у вірші, кількість голосних в слові - " << vowNum[test_iter] << endl;
+            testOutput1 << L"Passed - СЃР»РѕРІРѕ " << input[test_iter].c_str() << L" РІС–РґСЃСѓС‚РЅС” Сѓ РІС–СЂС€С–, РєС–Р»СЊРєС–СЃС‚СЊ РіРѕР»РѕСЃРЅРёС… РІ СЃР»РѕРІС– - " << vowNum[test_iter] << endl;
         if(vowelNum != vowNum[test_iter])
-            testOutput1 << "Failed - у слові " << input[test_iter].c_str() << " повинно бути приголосних " << vowNum[test_iter] << ", отримано було " << vowelNum << endl;
+            testOutput1 << L"Failed - Сѓ СЃР»РѕРІС– " << input[test_iter].c_str() << L" РїРѕРІРёРЅРЅРѕ Р±СѓС‚Рё РїСЂРёРіРѕР»РѕСЃРЅРёС… " << vowNum[test_iter] << L", РѕС‚СЂРёРјР°РЅРѕ Р±СѓР»Рѕ " << vowelNum << endl;
     }
     testOutput1.close();
 
@@ -81,12 +81,12 @@ int main()
 
         int consCounted = f_countcons(inputName, outputName);
         if(consCounted == consExp[iter]){
-            testOutput2 << "Passed: отриманий результат - " << consCounted <<
-             ", приріотетний результат - " << consExp[iter] << ", вхідні дані - " << input[iter].c_str() << endl;
+            testOutput2 << L"Passed: РѕС‚СЂРёРјР°РЅРёР№ СЂРµР·СѓР»СЊС‚Р°С‚ - " << consCounted <<
+             L", РїСЂРёСЂС–РѕС‚РµС‚РЅРёР№ СЂРµР·СѓР»СЊС‚Р°С‚ - " << consExp[iter] << L", РІС…С–РґРЅС– РґР°РЅС– - " << input[iter].c_str() << endl;
         }
         else{
-            testOutput2 << "Failed: отриманий результат - " << consCounted <<
-             ", приріотетний результат - " << consExp[iter] << ", вхідні дані - " << input[iter].c_str() << endl;
+            testOutput2 << L"Failed: РѕС‚СЂРёРјР°РЅРёР№ СЂРµР·СѓР»СЊС‚Р°С‚ - " << consCounted <<
+             L", РїСЂРёСЂС–РѕС‚РµС‚РЅРёР№ СЂРµР·СѓР»СЊС‚Р°С‚ - " << consExp[iter] << L", РІС…С–РґРЅС– РґР°РЅС– - " << input[iter].c_str() << endl;
         }
 
     }
@@ -100,19 +100,19 @@ int main()
         f_resofscalc(outputName, x[iter], y[iter], z[iter], &S, &binNum[iter]);
 
         if(TrueS[iter] == S && binNum[iter] == expBin[iter]){
-            testOutput3 << "Passed: при x, y, z " << x[iter] << " " << y[iter] << " " << z[iter] << " відповідно очікуване S = 0b" << TrueS[iter] << ", отримане S = 0b" << S << endl
-                        << "        число " << bin << " у двійковій системі числення має вигляд " << expBin[iter] << ", отриманий резулятат - " << binNum[iter] << endl;
+            testOutput3 << L"Passed: РїСЂРё x, y, z " << x[iter] << L" " << y[iter] << L" " << z[iter] << L" РІС–РґРїРѕРІС–РґРЅРѕ РѕС‡С–РєСѓРІР°РЅРµ S = " << TrueS[iter] << L", РѕС‚СЂРёРјР°РЅРµ S = " << S << endl
+                        << L"        С‡РёСЃР»Рѕ " << bin << L" Сѓ РґРІС–Р№РєРѕРІС–Р№ СЃРёСЃС‚РµРјС– С‡РёСЃР»РµРЅРЅСЏ РјР°С” РІРёРіР»СЏРґ 0b" << expBin[iter] << L", РѕС‚СЂРёРјР°РЅРёР№ СЂРµР·СѓР»СЏС‚Р°С‚ - 0b" << binNum[iter] << endl;
         }
         else{
-            testOutput3 << "Passed: при x, y, z " << x[iter] << " " << y[iter] << " " << z[iter] << " відповідно очікуване S = 0b" << TrueS[iter] << ", отримане S = 0b" << S << endl
-                        << "        число " << bin << " у двійковій системі числення має вигляд " << expBin[iter] << ", отриманий резулятат - " << binNum[iter] << endl;
+            testOutput3 << L"Passed: РїСЂРё x, y, z " << x[iter] << L" " << y[iter] << L" " << z[iter] << L" РІС–РґРїРѕРІС–РґРЅРѕ РѕС‡С–РєСѓРІР°РЅРµ S = " << TrueS[iter] << L", РѕС‚СЂРёРјР°РЅРµ S = " << S << endl
+                        << L"        С‡РёСЃР»Рѕ " << bin << L" Сѓ РґРІС–Р№РєРѕРІС–Р№ СЃРёСЃС‚РµРјС– С‡РёСЃР»РµРЅРЅСЏ РјР°С” РІРёРіР»СЏРґ 0b" << expBin[iter] << L", РѕС‚СЂРёРјР°РЅРёР№ СЂРµР·СѓР»СЏС‚Р°С‚ - 0b" << binNum[iter] << endl;
 
         }
     }
     testOutput3.close();
 
-    wcout << "Вітаю! Данний тестовий драйвер провів тестування модулів лабораторної роботи №10" << endl;
-    wcout << "Результати тестування записано у файли test1, test2, test3 відповідно." << endl;
+    wcout << L"Р’С–С‚Р°СЋ! Р”Р°РЅРЅРёР№ С‚РµСЃС‚РѕРІРёР№ РґСЂР°Р№РІРµСЂ РїСЂРѕРІС–РІ С‚РµСЃС‚СѓРІР°РЅРЅСЏ РјРѕРґСѓР»С–РІ Р»Р°Р±РѕСЂР°С‚РѕСЂРЅРѕС— СЂРѕР±РѕС‚Рё в„–10" << endl;
+    wcout << L"Р РµР·СѓР»СЊС‚Р°С‚Рё С‚РµСЃС‚СѓРІР°РЅРЅСЏ Р·Р°РїРёСЃР°РЅРѕ Сѓ С„Р°Р№Р»Рё test1, test2, test3 РІС–РґРїРѕРІС–РґРЅРѕ." << endl;
     system("pause");
 
     return 0;
