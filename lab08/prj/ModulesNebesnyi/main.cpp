@@ -105,7 +105,7 @@ int f_searchword(char *inputName, char *outputName, int *vowelNum){
     *vowelNum = 0;
     int vows = 0;
     wstring inputWord;
-    wstring vowelSounds = L"АаЕеЄєиІіЇїУуЮюЯяОо";
+    wchar_t vowelSounds[] = L"АаЕеЄєиІіЇїУуЮюЯяОо";
     wchar_t poesy[1000] = {L"До щастя не пускає лінощів орава. У чім воно - ніхто не знає до пуття."
                      "Навчитись радісно робити кожну справу - Найперше правило щасливого життя."};
 
@@ -136,16 +136,16 @@ int f_searchword(char *inputName, char *outputName, int *vowelNum){
         outputFile << L"Cлово " << inputWord << L" відсутнє в краплинці Віталія Іващенка." << endl;
         testRes = 2;
     }
-    for(int i = 0; i < inputWord.length(); i++){
-        for(int j = 0; j < vowelSounds.length(); j++)
+    for(int i = 0; i < wcslen(wstr); i++){
+        for(int j = 0; j < wcslen(vowelSounds); j++)
             if(inputWord[i] == vowelSounds[j]) vows++;
     }
     *vowelNum = vows;
 
     if(*vowelNum > 0)
-        outputFile << L"Кількість голосних в слові " << inputWord << L" - " << *vowelNum << endl;
+        outputFile << L"Кількість голосних в слові " << wstr << L" - " << *vowelNum << endl;
     else
-        outputFile << L"Голосні в слові " << inputWord << L" відсутні." << endl;
+        outputFile << L"Голосні в слові " << wstr << L" відсутні." << endl;
 
     outputFile.close();
 
@@ -160,7 +160,8 @@ int f_countcons(char *inputName,char *outputName){
     wofstream outputFile;
     wifstream inputFile;
     int consNum = 0;
-    wstring consSounds = L"БбВвГгҐґДдЖжЗзКкЛлМмНнПпРрСсТтфФХхЦцЧчШшЩщ";
+    wchar_t consSounds[] = L"БбВвГгҐґДдЖжЗзКкЛлМмНнПпРрСсТтфФХхЦцЧчШшЩщ";
+    wchar_t ch_IW[50] = L"";
     wstring inputWord;
 
     inputFile.open(inputName);
@@ -168,17 +169,19 @@ int f_countcons(char *inputName,char *outputName){
     getline(inputFile, inputWord);
     inputFile.close();
 
+    wcscat(ch_IW, inputWord.c_str());
     outputFile.open(outputName, ios::app);
     outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-    for(int i = 0; i < inputWord.length(); i++){
-        for(int j = 0; j < consSounds.length(); j++)
-            if(inputWord[i] == consSounds[j]) consNum++;
+    for(int i = 0; i < wcslen(ch_IW); i++){
+        for(int j = 0; j < wcslen(consSounds); j++)
+            if(ch_IW[i] == consSounds[j]) consNum++;
     }
 
-    time_t writingTime;
+    time_t currTime;
+    time(&currTime);
 
-    outputFile << endl << L"Кількість приголосних у слові " << inputWord << " - " << consNum << endl
-               << L"Час дозапису інформації: " << endl << ctime(&writingTime) << endl;
+    outputFile << endl << L"Кількість приголосних у слові " << ch_IW << " - " << consNum << endl
+               << L"Час дозапису інформації: " << endl << ctime(&currTime) << endl;
     outputFile.close();
 
     return consNum;

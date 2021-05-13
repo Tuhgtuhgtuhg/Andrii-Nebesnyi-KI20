@@ -13,6 +13,18 @@
 
 using namespace std;
 
+int checkXYZ(int num){
+    wcout << L": ";
+
+    if(!(wcin >> num)){
+        wcin.clear();
+        while (wcin.get() != '\n');
+        wcout << L"Ви ввели символ, введіть число." << endl;
+        checkXYZ(num);
+    }
+    return num;
+}
+
 int main()
 {
     _wsetlocale(LC_ALL, L"uk_UA.UTF-8");
@@ -28,31 +40,47 @@ int main()
     int vowelNum = 0;
 
     wcout << L"----------------------------------------------------------------------------" << endl;
-    wcout << L"Даний застосунок виконує операції над файлами, використовуючи функції:      " << endl;
-    wcout << L" * f_searchword - шукає слово з вхідного файлу у поезії та вносить до файлу " << endl;
-    wcout << L"   інформацію про розробника та кількість голосних у введеному слові. Увага!" << endl;
-    wcout << L"   Дана функція повністю очищує вміст вихідного файлу output.txt            " << endl;
-    wcout << L" * f_countcons - рахує кількість приголосних у вхідному слові та записує ре-" << endl;
-    wcout << L"   зультат у вихідний файл, у файлі відображається час дозапису інформації. " << endl;
+    wcout << L"Даний застосунок виконує операцiї над файлами, використовуючи функцiї:      " << endl;
+    wcout << L" * f_searchword - шукає слово з вхiдного файлу у поезiї та вносить до файлу " << endl;
+    wcout << L"   iнформацiю про розробника та кiлькiсть голосних у введеному словi. Увага!" << endl;
+    wcout << L"   Дана функцiя повнiстю очищує вмiст вихiдного файлу output.txt            " << endl;
+    wcout << L" * f_countcons - рахує кiлькiсть приголосних у вхiдному словi та записує ре-" << endl;
+    wcout << L"   зультат у вихiдний файл, у файлi вiдображається час дозапису iнформацiї. " << endl;
     wcout << L" * f_resofscalc - рахує число S за формулою з лабораторної роботи №8 та пе- " << endl;
-    wcout << L"   реводить число binNum у двійкову систему числення, результат записується " << endl;
-    wcout << L"   до вихідного файду.                                                      " << endl;
+    wcout << L"   реводить число binNum у двiйкову систему числення, результат записується " << endl;
+    wcout << L"   до вихiдного файду.                                                      " << endl;
     wcout << L"----------------------------------------------------------------------------" << endl;
 
-    wcout << L"Введіть назву та розширення вхідного файлу(Ви створюєте вхідний файл): ";
+    wcout << L"Введiть назву та розширення вхiдного файлу(Ви створюєте вхiдний файл самостiйно через файловий менеджер у тецi з програмою): ";
     wcin.getline(inputName, 50);
-    wcout << L"Введіть до файлу слово для перевірки його наявності в вірші, після введення напишіть в консоль D: ";
+
+    char ch_inputName[50] = "";
+    wcstombs(ch_inputName, inputName, sizeof(ch_inputName));
+    while(true){
+        if(access(ch_inputName, 0) != -1){
+            inputFile.open(ch_inputName);
+            inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+            inputFile.close();
+            break;
+        }
+        else{
+            wcout << L"Файл не знайдено. Можливе невiрно введенне iм'я або вiдсутнiсть файлу у тецi програми." << endl;
+            wcin.getline(inputName, 50);
+            wcstombs(ch_inputName, inputName, sizeof(ch_inputName));
+        }
+    }
+    wcout << L"Введiть до файлу (через блокнот) слово, пiсля введення напишiть в консоль ключ \"D\"(отримання доступу до функцiй): ";
     wcin.getline(Key, 2);
     while(!wcsstr(D, Key) && !wcsstr(F, Key)){
-        wcout << L"Ви ввели невірний ключ, спробуйте ще раз: ";
+        wcout << L"Ви ввели невiрний ключ, спробуйте ще раз: ";
         wcin >> Key;
     }
     if(wcsstr(F, Key)){
-        wcout << L"Застосунок завершиться після натиснення Enter" << endl;
+        wcout << L"Застосунок завершиться пiсля натиснення Enter" << endl;
         system("pause");
         return 0;
     } else if(wcsstr(D, Key)){
-        wcout << L"Ключи для виклику функцій: " << endl;
+        wcout << L"Ключi для виклику функцiй: " << endl;
         wcout << L"f_searcword -- F" << endl;
         wcout << L"f_countcons -- C" << endl;
         wcout << L"f_resofscalc -- S" << endl;
@@ -66,10 +94,8 @@ int main()
             int z = 0;
             float S = 0;
             int binNum = 0;
-            char ch_inputName[50] = "";
-            wcstombs(ch_inputName, inputName, sizeof(ch_inputName));
 
-            wcout << L"Введіть ключ для: ";
+            wcout << L"Введiть ключ для: ";
             wcin >> fKey;
 
             if(fKey == 'E')
@@ -79,26 +105,26 @@ int main()
             {
                 case 'F':
                     f_searchword(ch_inputName, outputName, &vowelNum);
-                    wcout << L"Робота с файлами була завершена, результати виконання f_searchword можна побачити у вихідному файлі." << endl;
+                    wcout << L"Робота с файлами була завершена, результати виконання f_searchword можна побачити у вихiдному файлi." << endl;
                     break;
                 case 'C':
                     f_countcons(ch_inputName, outputName);
-                    wcout << L"Робота с файлами була завершена, результати виконання f_countcons можна побачити у вихідному файлі." << endl;
+                    wcout << L"Робота с файлами була завершена, результати виконання f_countcons можна побачити у вихiдному файлi." << endl;
                     break;
                 case 'S':
-                    wcout << L"Введіть x ";
-                    wcin >> x;
-                    wcout << L"Введіть y ";
-                    wcin >> y;
-                    wcout << L"Введіть z ";
-                    wcin >> z;
-                    wcout << L"Введіть binNum ";
-                    wcin >> binNum;
+                    wcout << L"Введiть x ";
+                    x = checkXYZ(x);
+                    wcout << L"Введiть y ";
+                    y = checkXYZ(y);
+                    wcout << L"Введiть z ";
+                    z = checkXYZ(z);
+                    wcout << L"Введiть binNum ";
+                    binNum = checkXYZ(binNum);
                     f_resofscalc(outputName, x, y, z, &S, &binNum);
-                    wcout << L"Робота с файлами була завершена, результати виконання f_resofscalc можна побачити у вихідному файлі." << endl;
+                    wcout << L"Робота с файлами була завершена, результати виконання f_resofscalc можна побачити у вихiдному файлi." << endl;
                     break;
                 default:
-                    wcout << L"Невірно введений ключ" << endl;
+                    wcout << L"Невiрно введений ключ" << endl;
                     break;
             }
         }
