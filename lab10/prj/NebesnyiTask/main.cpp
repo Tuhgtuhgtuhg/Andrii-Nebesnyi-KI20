@@ -66,33 +66,8 @@ int main()
 
     while(true){
         if(access(ch_inputName, 0) != -1){
-
-            inputFile.open(ch_inputName);
-            inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-            inputFile.getline(inputWord, 50);
-            inputFile.close();
-
-            inputFileWrite.open(ch_inputName, ios_base::trunc);
-            inputFileWrite.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-            inputFileWrite << inputWord;
-            inputFileWrite.close();
-
-            /*inFILE.open(ch_inputName);
-            inFILE.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-            inFILE.getline(inputWordwch, 50);
-            inFILE.close();
-
             wchar_t vowelSounds[] = L"АаЕеЄєиІіЇїУуЮюЯяОо";
-            int vow = 0;*/
-
-            /*for(int i = 0; i < wcslen(inputWordwch); i++){
-                for(int j = 0; j < wcslen(vowelSounds); j++){
-                    if(inputWordwch[i] == vowelSounds[j])
-                        vow++;
-                }
-            }
-
-            wcout << vow << inputWordwch << L" " << vowelSounds;*/
+            int vow = 0;
 
             break;
         }
@@ -104,6 +79,16 @@ int main()
     }
     wcout << L"Введiть до файлу (через блокнот) слово, пiсля введення напишiть в консоль ключ \"D\"(отримання доступу до функцiй): ";
     wcin.getline(Key, 2);
+
+    inputFile.open(ch_inputName);
+    inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+    inputFile.getline(inputWord, 50);
+    inputFile.close();
+
+    inputFileWrite.open(ch_inputName, ios_base::trunc);
+    inputFileWrite.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+    inputFileWrite << inputWord;
+    inputFileWrite.close();
 
     while(!wcsstr(D, Key) && !wcsstr(F, Key)){
         wcout << L"Ви ввели невiрний ключ, спробуйте ще раз: ";
