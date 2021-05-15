@@ -1,13 +1,16 @@
 ﻿#include <iostream>
-#include <cwchar>
-#include <io.h>
-#include <clocale>
 #include <fstream>
+#include <wchar.h>
+#include <io.h>
+#include <fcntl.h>
+#include <clocale>
 #include <string>
 #include <cstdlib>
 #include <sstream>
 #include <codecvt>
-#include <fcntl.h>
+#include <ctime>
+#include <bitset>
+#include <cmath>
 
 #include "ModulesNebesnyi.h"
 
@@ -31,13 +34,17 @@ int main()
     _setmode(_fileno(stdout), _O_U8TEXT);
     _setmode(_fileno(stdin), _O_U8TEXT);
 
-    wifstream inputFile;
+    ifstream inputFile;
+    wifstream inFILE;
+    wofstream inputFileWrite;
     wchar_t inputName[100] = L"";
     char outputName[] = "output.txt";
     wchar_t Key[2] = L"";
     wchar_t D[2] = L"D";
     wchar_t F[2] = L"F";
     int vowelNum = 0;
+    wchar_t inputWordwch[50];
+    char inputWord[50];
 
     wcout << L"----------------------------------------------------------------------------" << endl;
     wcout << L"Даний застосунок виконує операцiї над файлами, використовуючи функцiї:      " << endl;
@@ -56,11 +63,37 @@ int main()
 
     char ch_inputName[50] = "";
     wcstombs(ch_inputName, inputName, sizeof(ch_inputName));
+
     while(true){
         if(access(ch_inputName, 0) != -1){
+
             inputFile.open(ch_inputName);
             inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+            inputFile.getline(inputWord, 50);
             inputFile.close();
+
+            inputFileWrite.open(ch_inputName, ios_base::trunc);
+            inputFileWrite.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+            inputFileWrite << inputWord;
+            inputFileWrite.close();
+
+            /*inFILE.open(ch_inputName);
+            inFILE.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
+            inFILE.getline(inputWordwch, 50);
+            inFILE.close();
+
+            wchar_t vowelSounds[] = L"АаЕеЄєиІіЇїУуЮюЯяОо";
+            int vow = 0;*/
+
+            /*for(int i = 0; i < wcslen(inputWordwch); i++){
+                for(int j = 0; j < wcslen(vowelSounds); j++){
+                    if(inputWordwch[i] == vowelSounds[j])
+                        vow++;
+                }
+            }
+
+            wcout << vow << inputWordwch << L" " << vowelSounds;*/
+
             break;
         }
         else{
@@ -71,6 +104,7 @@ int main()
     }
     wcout << L"Введiть до файлу (через блокнот) слово, пiсля введення напишiть в консоль ключ \"D\"(отримання доступу до функцiй): ";
     wcin.getline(Key, 2);
+
     while(!wcsstr(D, Key) && !wcsstr(F, Key)){
         wcout << L"Ви ввели невiрний ключ, спробуйте ще раз: ";
         wcin >> Key;
@@ -86,6 +120,17 @@ int main()
         wcout << L"f_resofscalc -- S" << endl;
         wcout << L"exit - E" << endl;
 
+        //inputFile.open(ch_inputName);
+        //inputFile.getline(inputWord, 50);
+        //inputFile.imbue(locale(locale(), new codecvt_utf8<wchar_t>));
+        //inputFile.close();
+
+        //mbstowcs(inputWordwch, inputWord, sizeof(inputWordwch));
+
+        //inputFileWrite.open(ch_inputName, ios_base::trunc);
+        //inputFileWrite.imbue(locale(locale(), new codecvt_utf8<wchar_t>));
+        //inputFileWrite << inputWord;
+        //inputFileWrite.close();
 
         while(true){
             wchar_t fKey;

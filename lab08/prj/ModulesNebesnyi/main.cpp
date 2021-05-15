@@ -9,7 +9,6 @@
 #include <sstream>
 #include <codecvt>
 #include <ctime>
-#include <bitset>
 #include <cmath>
 
 //#include "ModulesNebesnyi.h"
@@ -102,20 +101,23 @@ int f_searchword(char *inputName, char *outputName, int *vowelNum){
 
     wifstream inputFile;
     wofstream outputFile;
+    wchar_t wstr[50] = L"";
     *vowelNum = 0;
     int vows = 0;
-    wstring inputWord;
     wchar_t vowelSounds[] = L"АаЕеЄєиІіЇїУуЮюЯяОо";
-    wchar_t poesy[1000] = {L"До щастя не пускає лінощів орава. У чім воно - ніхто не знає до пуття."
-                     "Навчитись радісно робити кожну справу - Найперше правило щасливого життя."};
+    wchar_t poesy[250] = {L"До щастя не пускає лінощів орава. У чім воно - ніхто не знає до пуття."
+                     L"Навчитись радісно робити кожну справу - Найперше правило щасливого життя."};
 
     inputFile.open(inputName);
     inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-    getline(inputFile, inputWord);
+    inputFile.getline(wstr, 50);
     inputFile.close();
 
-    wchar_t wstr[50] = L"";
-    wcscat(wstr, inputWord.c_str());
+    for(int i = 0; i < wcslen(wstr); i++){
+        for(int j = 0; j < wcslen(vowelSounds); j++)
+            if(wstr[i] == vowelSounds[j]) vows++;
+    }
+    *vowelNum = vows;
 
     outputFile.open(outputName);
     outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
@@ -128,25 +130,19 @@ int f_searchword(char *inputName, char *outputName, int *vowelNum){
     bool Marker = 0;
     int testRes = 0;
 
-    if(wcsstr(poesy ,wstr)){
-        outputFile << L"Cлово " << inputWord << L" присутнє в краплинці Віталія Іващенка." << endl;
+    if(wcsstr(poesy, wstr)){
+        outputFile << L"Cлово " << wstr << L" присутнє в краплинці Віталія Іващенка." << endl;
         testRes = 1;
     }
     else{
-        outputFile << L"Cлово " << inputWord << L" відсутнє в краплинці Віталія Іващенка." << endl;
+        outputFile << L"Cлово " << wstr << L" відсутнє в краплинці Віталія Іващенка." << endl;
         testRes = 2;
     }
-    for(int i = 0; i < wcslen(wstr); i++){
-        for(int j = 0; j < wcslen(vowelSounds); j++)
-            if(inputWord[i] == vowelSounds[j]) vows++;
-    }
-    *vowelNum = vows;
 
-    if(*vowelNum > 0)
-        outputFile << L"Кількість голосних в слові " << wstr << L" - " << *vowelNum << endl;
+    if(vows > 0)
+        outputFile << L"Кількість голосних в слові " << wstr << L" - " << vows << endl;
     else
         outputFile << L"Голосні в слові " << wstr << L" відсутні." << endl;
-
     outputFile.close();
 
     return testRes;
@@ -157,32 +153,30 @@ int f_countcons(char *inputName,char *outputName){
     _setmode(_fileno(stdout), _O_U8TEXT);
     _setmode(_fileno(stdin), _O_U8TEXT);
 
-    wofstream outputFile;
+    wofstream inputFileWrite;
     wifstream inputFile;
     int consNum = 0;
     wchar_t consSounds[] = L"БбВвГгҐґДдЖжЗзКкЛлМмНнПпРрСсТтфФХхЦцЧчШшЩщ";
-    wchar_t ch_IW[50] = L"";
-    wstring inputWord;
+    wchar_t inputWord[50] = L"";
 
     inputFile.open(inputName);
     inputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-    getline(inputFile, inputWord);
+    inputFile.getline(inputWord, 50);
     inputFile.close();
 
-    wcscat(ch_IW, inputWord.c_str());
-    outputFile.open(outputName, ios::app);
-    outputFile.imbue(locale(locale(), new codecvt_utf8_utf16<wchar_t>));
-    for(int i = 0; i < wcslen(ch_IW); i++){
+    inputFileWrite.open(inputName, ios::app);
+    inputFileWrite.imbue(locale(locale(), new codecvt_utf8<wchar_t>));
+    for(int i = 0; i < wcslen(inputWord); i++){
         for(int j = 0; j < wcslen(consSounds); j++)
-            if(ch_IW[i] == consSounds[j]) consNum++;
+            if(inputWord[i] == consSounds[j]) consNum++;
     }
 
     time_t currTime;
     time(&currTime);
 
-    outputFile << endl << L"Кількість приголосних у слові " << ch_IW << " - " << consNum << endl
+    inputFileWrite << endl << L"Кількість приголосних у слові " << " - " << consNum << endl
                << L"Час дозапису інформації: " << endl << ctime(&currTime) << endl;
-    outputFile.close();
+    inputFileWrite.close();
 
     return consNum;
 }
