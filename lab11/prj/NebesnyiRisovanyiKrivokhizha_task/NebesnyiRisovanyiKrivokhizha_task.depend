@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1623923854 source:e:\bmtp_rep\andrii-nebesnyi-ki20\lab11\prj\nebesnyirisovanyikrivokhizha_task\main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<windows.h>
+	<clocale>
+	<string>
+
